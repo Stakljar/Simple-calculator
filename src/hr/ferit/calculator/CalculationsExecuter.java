@@ -76,7 +76,7 @@ public class CalculationsExecuter {
 					}
 					case '/': {
 						equation.set(i - 1, decimalFormat.format(Double.parseDouble(equation.get(i - 1))
-								/ Integer.parseInt(equation.get(i + 1))));
+								/ Double.parseDouble(equation.get(i + 1))));
 						equation.remove(i + 1);
 						equation.remove(i);
 						i--;
