@@ -53,35 +53,35 @@ public class JCalculator extends JFrame {
 		highest.add(resultDisplay, BorderLayout.EAST);
 		main.add(highest);
 		
-		JPanel higher = new JPanel(new GridLayout(1, 4, 20 , 0));
+		JPanel higher = new JPanel(new GridLayout(1, 4, 20, 0));
 		higher.add(addResetButton());
 		higher.add(addOperationsButton("("));
 		higher.add(addOperationsButton(")"));
 		higher.add(addOperationsButton("/"));
 		main.add(higher);
 		
-		JPanel aboveMiddle = new JPanel(new GridLayout(1, 4, 20 , 0));
+		JPanel aboveMiddle = new JPanel(new GridLayout(1, 4, 20, 0));
 		aboveMiddle.add(addNumberButton("7"));
 		aboveMiddle.add(addNumberButton("8"));
 		aboveMiddle.add(addNumberButton("9"));
 		aboveMiddle.add(addOperationsButton("*"));
 		main.add(aboveMiddle);
 		
-		JPanel belowMiddle = new JPanel(new GridLayout(1, 4, 20 , 0));
+		JPanel belowMiddle = new JPanel(new GridLayout(1, 4, 20, 0));
 		belowMiddle.add(addNumberButton("4"));
 		belowMiddle.add(addNumberButton("5"));
 		belowMiddle.add(addNumberButton("6"));
 		belowMiddle.add(addOperationsButton("+"));
 		main.add(belowMiddle);
 		
-		JPanel lower = new JPanel(new GridLayout(1, 4, 20 , 0));
+		JPanel lower = new JPanel(new GridLayout(1, 4, 20, 0));
 		lower.add(addNumberButton("1"));
 		lower.add(addNumberButton("2"));
 		lower.add(addNumberButton("3"));
 		lower.add(addOperationsButton("-"));
 		main.add(lower);
 		
-		JPanel lowest = new JPanel(new GridLayout(1, 4, 20 , 0));
+		JPanel lowest = new JPanel(new GridLayout(1, 4, 20, 0));
 		lowest.add(addNumberButton("0"));
 		lowest.add(addNumberButton("."));
 		lowest.add(addOperationsButton("%"));
