@@ -39,7 +39,7 @@ public class JCalculator extends JFrame {
 		attachComponents();
 	}
 
-	public void attachComponents() {
+	private void attachComponents() {
 		
 		resultDisplay.setHorizontalAlignment(SwingConstants.RIGHT);
 		resultDisplay.setFont(new Font(null, Font.PLAIN, 50));
