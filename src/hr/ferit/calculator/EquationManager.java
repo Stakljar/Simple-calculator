@@ -30,6 +30,17 @@ public class EquationManager {
 		return false;
 	}
 	
+	private boolean checkForOnlyDotElement(ArrayList<String> equation) {
+		
+		for(int i = 0; i < equation.size(); i++) {
+			if(equation.get(i) == ".") {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	private void performPostIncorrentInputOperations(ArrayList<String> equation, JLabel equationDisplay) {
 		
 		equationDisplay.setText("Neispravan unos.");
@@ -83,7 +94,7 @@ public class EquationManager {
 		else if(((checkSymbols(equation, index, new String[]{"*", "/", ")"})) && equation.get(index - 1) == "(")
 				|| (checkSymbols(equation, index - 1, new String[]{"+", "-", "*", "/"})) && equation.get(index) == ")")  {
 			return true;
-		}
+		} 
 		return false;
 	}
 	
@@ -144,6 +155,10 @@ public class EquationManager {
 		if(!equation.isEmpty()) {
 			if(checkSymbols(equation, equation.size() - 1, new String[]{"+", "-", "*", "/"}) 
 					|| checkSymbols(equation, 0, new String[]{"%", "*", "/"})) {
+				performPostIncorrentInputOperations(equation, equationDisplay);
+				return;
+			}
+			else if(checkForOnlyDotElement(equation)) {
 				performPostIncorrentInputOperations(equation, equationDisplay);
 				return;
 			}
