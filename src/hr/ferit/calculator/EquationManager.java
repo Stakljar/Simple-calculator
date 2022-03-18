@@ -191,6 +191,4 @@ public class EquationManager {
 			equation.add(result.toString());
 		}
 	}
-
-	
 }
