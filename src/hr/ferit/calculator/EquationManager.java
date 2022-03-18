@@ -58,7 +58,7 @@ public class EquationManager {
 					}	
 			}		
 			else {
-				result = result.substring(0, 8) + "*10E" + Integer.toString(result.length() - 8);
+				result = result.substring(0, 8) + "E" + Integer.toString(result.length() - 8);
 			}
 		}
 		return result;
@@ -191,4 +191,6 @@ public class EquationManager {
 			equation.add(result.toString());
 		}
 	}
+
+	
 }
