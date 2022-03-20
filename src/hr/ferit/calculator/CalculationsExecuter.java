@@ -55,6 +55,7 @@ public class CalculationsExecuter {
 								+ Double.parseDouble(equation.get(i + 1))));
 						equation.remove(i + 1);
 						equation.remove(i);
+						equation.set(i - 1, equation.get(i - 1).replace(',', '.'));
 						i--;
 						break;
 					}
@@ -63,6 +64,7 @@ public class CalculationsExecuter {
 								- Double.parseDouble(equation.get(i + 1))));
 						equation.remove(i + 1);
 						equation.remove(i);
+						equation.set(i - 1, equation.get(i - 1).replace(',', '.'));
 						i--;
 						break;
 					}
@@ -71,6 +73,7 @@ public class CalculationsExecuter {
 								* Double.parseDouble(equation.get(i + 1))));
 						equation.remove(i + 1);
 						equation.remove(i);
+						equation.set(i - 1, equation.get(i - 1).replace(',', '.'));
 						i--;
 						break;
 					}
@@ -79,12 +82,14 @@ public class CalculationsExecuter {
 								/ Double.parseDouble(equation.get(i + 1))));
 						equation.remove(i + 1);
 						equation.remove(i);
+						equation.set(i - 1, equation.get(i - 1).replace(',', '.'));
 						i--;
 						break;
 					}
 					case '%': {
 						equation.set(i - 1, decimalFormat.format(Double.parseDouble(equation.get(i - 1)) / 100));
 						equation.remove(i);
+						equation.set(i - 1, equation.get(i - 1).replace(',', '.'));
 						i--;
 						break;
 					}
