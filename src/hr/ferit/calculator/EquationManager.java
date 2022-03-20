@@ -47,6 +47,12 @@ public class EquationManager {
 		equation.clear();
 	}
 	
+	private void performPostUndefinedNumberOperations(ArrayList<String> equation, JLabel equationDisplay) {
+		
+		equationDisplay.setText("Nedefiniran broj.");
+		equation.clear();
+	}
+	
 	private String performOperationsForLongNumber(String input) {
 		
 		String result = input;
@@ -183,12 +189,17 @@ public class EquationManager {
 				return;
 			}
 			
-			mergeNumberAndPrefix(equation, 0);
-			StringBuilder result = new StringBuilder(CalculationsExecuter.orderBrackets(equation).get(0));
-			result.replace(0, result.length(), performOperationsForLongNumber(result.toString()));
-			equationDisplay.setText(result.toString());
-			equation.clear();
-			equation.add(result.toString());
+			try {
+				mergeNumberAndPrefix(equation, 0);
+				StringBuilder result = new StringBuilder(CalculationsExecuter.orderBrackets(equation).get(0));
+				result.replace(0, result.length(), performOperationsForLongNumber(result.toString()));
+				equationDisplay.setText(result.toString());
+				equation.clear();
+				equation.add(result.toString());
+			}
+			catch(NumberFormatException e) {
+				performPostUndefinedNumberOperations(equation, equationDisplay);
+			}
 		}
 	}
 }
