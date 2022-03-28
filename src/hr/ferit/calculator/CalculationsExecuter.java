@@ -43,7 +43,7 @@ public class CalculationsExecuter {
 	private static ArrayList<String> performOperations(ArrayList<String> equation, Character operator) {
 		
 		try {
-			equation = performOperations(equation, operators.get(operators.indexOf(operator)+1));
+			equation = performOperations(equation, operators.get(operators.indexOf(operator) + 1));
 		}
 		catch(IndexOutOfBoundsException e) {}
 		
