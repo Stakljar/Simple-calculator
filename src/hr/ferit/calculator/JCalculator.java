@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
@@ -29,14 +30,21 @@ public class JCalculator extends JFrame {
 	
 	public JCalculator() {
 		
-		super.setSize(500, 540);
-		super.setVisible(true);
-		super.setLocationRelativeTo(null);
-		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		super.setTitle("Jednostavni Kalkulator");
-		super.setMinimumSize(new Dimension(500, 500));
-		CalculationsExecuter.setRoundingMode(RoundingMode.HALF_UP);
-		attachComponents();
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				JCalculator.super.setSize(500, 540);
+				JCalculator.super.setVisible(true);
+				JCalculator.super.setLocationRelativeTo(null);
+				JCalculator.super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				JCalculator.super.setTitle("Jednostavni Kalkulator");
+				JCalculator.super.setMinimumSize(new Dimension(500, 500));
+				CalculationsExecuter.setRoundingMode(RoundingMode.HALF_UP);
+				attachComponents();
+			}
+		});
 	}
 
 	private void attachComponents() {
@@ -124,7 +132,15 @@ public class JCalculator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				flag = true;
-				equationManager.calculate(output, resultDisplay);
+				new SwingWorker<Object, Object>() {
+
+					@Override
+					protected Object doInBackground() throws Exception {
+						
+						equationManager.calculate(output, resultDisplay);
+						return null;
+					}
+				}.execute();
 			}
 		});
 		
