@@ -3,6 +3,7 @@ package hr.ferit.calculator;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class EquationManager {
 	
@@ -43,14 +44,29 @@ public class EquationManager {
 	
 	private void performPostIncorrentInputOperations(ArrayList<String> equation, JLabel equationDisplay) {
 		
-		equationDisplay.setText("Neispravan unos.");
-		equation.clear();
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				equationDisplay.setText("Neispravan unos.");
+				equation.clear();
+			}
+		});
+
 	}
 	
 	private void performPostUndefinedNumberOperations(ArrayList<String> equation, JLabel equationDisplay) {
 		
-		equationDisplay.setText("Nedefiniran broj.");
-		equation.clear();
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				equationDisplay.setText("Nedefiniran broj.");
+				equation.clear();
+			}
+		});
 	}
 	
 	private String performOperationsForLongNumber(String input) {
@@ -193,9 +209,16 @@ public class EquationManager {
 				mergeNumberAndPrefix(equation, 0);
 				StringBuilder result = new StringBuilder(CalculationsExecuter.orderBrackets(equation).get(0));
 				result.replace(0, result.length(), performOperationsForLongNumber(result.toString()));
-				equationDisplay.setText(result.toString());
-				equation.clear();
-				equation.add(result.toString());
+				SwingUtilities.invokeLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						
+						equationDisplay.setText(result.toString());
+						equation.clear();
+						equation.add(result.toString());
+					}
+				});
 			}
 			catch(NumberFormatException e) {
 				performPostUndefinedNumberOperations(equation, equationDisplay);
