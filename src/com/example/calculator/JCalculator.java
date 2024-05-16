@@ -27,19 +27,19 @@ public class JCalculator extends JFrame {
 	private ArrayList<String> output = new ArrayList<>();
 	private EquationManager equationManager = new EquationManager();
 	private JPanel main = new JPanel(new GridLayout(6, 1, 0, 20));
-	
+
 	public JCalculator() {
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				
+
 				JCalculator.super.setSize(500, 540);
 				JCalculator.super.setVisible(true);
 				JCalculator.super.setLocationRelativeTo(null);
 				JCalculator.super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				JCalculator.super.setTitle("Jednostavni Kalkulator");
+				JCalculator.super.setTitle("Simple calculator");
 				JCalculator.super.setMinimumSize(new Dimension(500, 500));
 				CalculationsExecuter.setRoundingMode(RoundingMode.HALF_UP);
 				attachComponents();
@@ -48,69 +48,69 @@ public class JCalculator extends JFrame {
 	}
 
 	private void attachComponents() {
-		
+
 		resultDisplay.setHorizontalAlignment(SwingConstants.RIGHT);
 		resultDisplay.setFont(new Font(null, Font.PLAIN, 50));
-		
+
 		main.setBorder(new EmptyBorder(20, 20, 20, 20));
 		add(main);
-		
+
 		JPanel highest = new JPanel(new BorderLayout());
 		highest.setBackground(Color.WHITE);
 		highest.setBorder(new EmptyBorder(0, 10, 0, 10));
 		highest.add(resultDisplay, BorderLayout.EAST);
 		main.add(highest);
-		
+
 		JPanel higher = new JPanel(new GridLayout(1, 4, 20, 0));
 		higher.add(addResetButton());
 		higher.add(addOperationsButton("("));
 		higher.add(addOperationsButton(")"));
 		higher.add(addOperationsButton("/"));
 		main.add(higher);
-		
+
 		JPanel aboveMiddle = new JPanel(new GridLayout(1, 4, 20, 0));
 		aboveMiddle.add(addNumberButton("7"));
 		aboveMiddle.add(addNumberButton("8"));
 		aboveMiddle.add(addNumberButton("9"));
 		aboveMiddle.add(addOperationsButton("*"));
 		main.add(aboveMiddle);
-		
+
 		JPanel belowMiddle = new JPanel(new GridLayout(1, 4, 20, 0));
 		belowMiddle.add(addNumberButton("4"));
 		belowMiddle.add(addNumberButton("5"));
 		belowMiddle.add(addNumberButton("6"));
 		belowMiddle.add(addOperationsButton("+"));
 		main.add(belowMiddle);
-		
+
 		JPanel lower = new JPanel(new GridLayout(1, 4, 20, 0));
 		lower.add(addNumberButton("1"));
 		lower.add(addNumberButton("2"));
 		lower.add(addNumberButton("3"));
 		lower.add(addOperationsButton("-"));
 		main.add(lower);
-		
+
 		JPanel lowest = new JPanel(new GridLayout(1, 4, 20, 0));
 		lowest.add(addNumberButton("0"));
 		lowest.add(addNumberButton("."));
 		lowest.add(addOperationsButton("%"));
-		lowest.add(addEqualButton());
+		lowest.add(addEqualsButton());
 		main.add(lowest);
-		
+
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
 	private void configureButtons(JButton button, Color color) {
-		
+
 		button.setBackground(color);
 		button.setFont(new Font(null, Font.PLAIN, 40));
 	}
 	
 	private JButton addResetButton() {
-		
+
 		JButton reset = new JButton("C");
 		configureButtons(reset, new Color(210, 190, 210));
 		reset.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -121,12 +121,12 @@ public class JCalculator extends JFrame {
 		
 		return reset;
 	}
-	
-	private JButton addEqualButton() {
-		
-		JButton equal = new JButton("=");
-		configureButtons(equal, new Color(210, 210, 210));
-		equal.addActionListener(new ActionListener() {
+
+	private JButton addEqualsButton() {
+
+		JButton equals = new JButton("=");
+		configureButtons(equals, new Color(210, 210, 210));
+		equals.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -144,9 +144,9 @@ public class JCalculator extends JFrame {
 			}
 		});
 		
-		return equal;
+		return equals;
 	}
-	
+
 	private JButton addOperationsButton(String symbol) {
 		
 		JButton operation = new JButton(symbol);
@@ -180,11 +180,11 @@ public class JCalculator extends JFrame {
 					output.clear();
 					flag = false;
 				}
-				
+
 				try {
-					if(!EquationManager.checkSymbols(output, output.size() - 1, new String[]{"+", "-", "*", "/", "%", "(", ")"})){
-						StringBuilder previous = new StringBuilder(output.get(output.size()-1));
-						output.remove(output.size()-1);
+					if(!EquationManager.checkSymbols(output, output.size() - 1, new String[]{"+", "-", "*", "/", "%", "(", ")"})) {
+						StringBuilder previous = new StringBuilder(output.get(output.size() - 1));
+						output.remove(output.size() - 1);
 						output.add(previous.toString() + symbol);
 					}
 					else
@@ -193,7 +193,7 @@ public class JCalculator extends JFrame {
 				catch(IndexOutOfBoundsException e1) {
 					output.add(symbol);
 				}
-			
+
 				resultDisplay.setText(String.join("", output));
 			}
 		});

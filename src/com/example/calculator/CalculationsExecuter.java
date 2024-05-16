@@ -9,20 +9,20 @@ public class CalculationsExecuter {
 
 	public static ArrayList<Character> operators = new ArrayList<Character>(Arrays.asList('+', '-', '*', '/', '%'));
 	private static DecimalFormat decimalFormat = new DecimalFormat("#.####");
-	
+
 	public static void setRoundingMode(RoundingMode roundingMode) {
 		
 		decimalFormat.setRoundingMode(roundingMode);
 	}
-	
+
 	public static ArrayList<String> orderBrackets(ArrayList<String> equation) {
-		
+
 		int index = 0;
 		ArrayList<String> temp = new ArrayList<String>();
-		
+
 		if(!equation.contains("("))
 				return performOperations(equation, '+');
-		
+
 		for(int i = 0; i < equation.size(); i++) {
 			if(equation.get(i) == "(")
 				index = i;
@@ -35,18 +35,18 @@ public class CalculationsExecuter {
 				break;
 			}
 		}
-		
+
 		equation = orderBrackets(equation);
 		return equation;
 	}
-	
+
 	private static ArrayList<String> performOperations(ArrayList<String> equation, Character operator) {
-		
+
 		try {
 			equation = performOperations(equation, operators.get(operators.indexOf(operator) + 1));
 		}
 		catch(IndexOutOfBoundsException e) {}
-		
+
 		for(int i = 0; i < equation.size(); i++) {
 			if(equation.get(i).toCharArray()[0] == operator && i != 0) {
 				switch(operator) {
@@ -96,7 +96,7 @@ public class CalculationsExecuter {
 				}
 			}
 		}
-			
+
 		return equation;
 	}
 }
